@@ -1,0 +1,486 @@
+@import "tailwindcss";
+
+:root {
+  --green: #111827; /* overridden for clinical modern slate */
+  --primary-clinical: #16a34a;
+  --primary-clinical-hover: #15803d;
+  --primary-clinical-bg: #f0fdf4;
+  --primary-clinical-border: #bbf7d0;
+
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  --grey-500: #64748b;
+  --grey-600: #475569;
+  --grey-700: #334155;
+  --grey-800: #1e293b;
+  --grey-900: #0f172a;
+
+  --red-bg: #fff1f2;
+  --red-border: #fecdd3;
+  --red-text: #9f1239;
+
+  --orange-bg: #fff7ed;
+  --orange-border: #ffedd5;
+  --orange-text: #9a3412;
+
+  --yellow-bg: #fefce8;
+  --yellow-border: #fef08a;
+  --yellow-text: #854d0e;
+
+  --blue-bg: #f0f9ff;
+  --blue-border: #e0f2fe;
+  --blue-text: #075985;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #f1f5f9;
+  color: var(--grey-900);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Base mobile simulator container */
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 75px;
+}
+
+/* Fixed/sticky Header */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--grey-100);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left h1 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.header-left .tagline {
+  font-size: 0.65rem;
+  color: var(--grey-500);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.lang-toggle {
+  background-color: var(--grey-50);
+  border: 1.5px solid var(--grey-200);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--grey-800);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.05em;
+}
+
+.lang-toggle:hover {
+  background-color: var(--grey-100);
+  border-color: var(--grey-300);
+}
+
+/* Scrolled container contents */
+.content-area {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+/* Quick Medical Disclaimer banner on top */
+.disclaimer-alert-card {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+/* Cards wrappers */
+.search-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--grey-200);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.question-textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1.5px solid var(--grey-200);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  resize: none;
+  background-color: var(--grey-50);
+  color: var(--grey-900);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.question-textarea:focus {
+  outline: none;
+  border-color: var(--primary-clinical);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+}
+
+.options-row {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--grey-700);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-clinical);
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: var(--primary-clinical);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15);
+}
+
+.submit-btn:disabled {
+  background-color: var(--grey-200);
+  color: var(--grey-400);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.submit-btn:not(:disabled):hover {
+  background-color: var(--primary-clinical-hover);
+}
+
+/* Clinical Suggestions List */
+.suggestions-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--grey-500);
+}
+
+.suggestion-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pill-btn {
+  background-color: var(--grey-50);
+  border: 1px solid var(--grey-200);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--grey-700);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pill-btn:hover {
+  background-color: var(--primary-clinical-bg);
+  border-color: var(--primary-clinical-border);
+  color: var(--grey-900);
+}
+
+/* Loader Animation Bouncers */
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bouncing-loader {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.bouncing-loader div {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: loading-dot-flicker 0.6s infinite alternate;
+}
+
+.bouncing-loader div:nth-child(2) { animation-delay: 0.2s; }
+.bouncing-loader div:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loading-dot-flicker {
+  to {
+    transform: translateY(-8px);
+    opacity: 0.2;
+  }
+}
+
+/* Error Notice Styling */
+.error-banner {
+  background-color: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+/* Categorized Evidence Tiers cards styles */
+.evidence-details-card {
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  border: 1.5px solid transparent;
+}
+
+.evidence-high {
+  background-color: var(--primary-clinical-bg);
+  border-color: var(--primary-clinical-border);
+}
+.evidence-moderate {
+  background-color: #fffbeb;
+  border-color: #fef08a;
+}
+.evidence-low {
+  background-color: #fff7ed;
+  border-color: #fed7aa;
+}
+.evidence-insufficient {
+  background-color: var(--grey-50);
+  border-color: var(--grey-200);
+}
+.evidence-rejected {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+
+/* Meta status pill badges */
+.badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge-generic {
+  background-color: #ffffff;
+  color: var(--grey-700);
+  border: 1px solid var(--grey-200);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Structured Output text elements */
+.result-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--grey-200);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* PMID anchor design to prevent WebView clipping */
+.pmid-inline-anchor {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 1.5px 6px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 0 3px;
+  transition: all 0.15s ease;
+}
+
+.pmid-neutral {
+  background-color: var(--grey-100);
+  color: var(--grey-800);
+}
+.pmid-valid {
+  background-color: #dcfce7;
+  color: #14532d;
+  border: 1px solid #86efac;
+}
+.pmid-invalid {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+  border: 1px solid #fca5a5;
+}
+
+/* Reference article layouts */
+.source-card {
+  transition: transform 0.15s ease;
+}
+
+.source-card:hover {
+  transform: translateY(-1px);
+}
+
+.source-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Custom safety footer notice card */
+.disclaimer-safety-notice-footer {
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.02);
+}
+
+/* History lists item states */
+.history-item {
+  background-color: #ffffff;
+  border: 1.5px solid var(--grey-200);
+}
+
+.clear-history-btn {
+  background: none;
+  border: 1px solid var(--grey-200);
+  color: var(--grey-600);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.clear-history-btn:hover {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+/* Core Fixed Bottom Navigation Bar UI */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 62px;
+  background-color: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid var(--grey-200);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 -4px 15px rgba(15, 23, 42, 0.03);
+}
+
+.nav-tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--grey-400);
+  gap: 4px;
+  height: 100%;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-tab-btn.active {
+  color: var(--primary-clinical);
+}
+
+.nav-tab-btn .tab-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.2;
+}
+
+.nav-tab-btn .tab-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.nav-badge {
+  position: absolute;
+  top: 6px;
+  right: calc(50% - 24px);
+  background-color: var(--primary-clinical);
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 1px 5.5px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+  border: 2px solid #ffffff;
+}

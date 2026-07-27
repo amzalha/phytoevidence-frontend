@@ -1,0 +1,27 @@
+{
+  "name": "phyto-evidence",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.4.0",
+    "@supabase/supabase-js": "^2.108.1",
+    "@tailwindcss/vite": "^4.3.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "lucide-react": "^1.18.0",
+    "motion": "^12.40.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}

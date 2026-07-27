@@ -1,0 +1,10 @@
+{
+  "appId": "ma.phyto.evidence",
+  "appName": "PhytoEvidence",
+  "webDir": "dist",
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

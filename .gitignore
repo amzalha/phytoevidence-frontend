@@ -1,0 +1,46 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Configuration locale Vite
+.env.local
+
+# BEGIN PHYTOEVIDENCE LOCAL SAFETY
+node_modules/
+dist/
+coverage/
+.vite/
+
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+!.env.example
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.tmp
+*.swp
+
+.vscode/
+.idea/
+
+android/.gradle/
+android/app/build/
+android/local.properties
+*.jks
+*.keystore
+
+ios/App/Pods/
+ios/App/DerivedData/
+# END PHYTOEVIDENCE LOCAL SAFETY
+supabase/.temp/
