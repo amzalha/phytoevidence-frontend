@@ -2,6 +2,7 @@ import { useState } from "react";
 import { askPubmed, type RagResponse, type PhytoResponse, isInteractionResponse } from "./api";
 import { useAuth } from "./AuthContext";
 import { LoginScreen } from "./LoginScreen";
+import { maskAuthEmail } from "./maskAuthEmail";
 import { saveSearchToSupabase, saveSearchToLocal, migrateLocalToSupabase } from "./searchHistory";
 
 type Lang = "fr" | "en";
@@ -323,10 +324,16 @@ export default function App() {
             <p className="tag">{t("tagline", lang)}</p>
           </div>
         </div>
-        <div style={{display:"flex",gap:"8px",alignItems:"center"}}>
+        <div className="head-actions">
           {user ? (
             <>
-              <span className="user-badge">✓ {user.email?.split("@")[0]}</span>
+              <span className="user-badge">
+                <span aria-hidden="true">✓</span>
+                <span className="user-badge-email">
+                  {maskAuthEmail(user.email) ||
+                    (lang === "fr" ? "Compte" : "Account")}
+                </span>
+              </span>
               <button className="logout-btn" onClick={() => signOut()}>
                 {lang === "fr" ? "Déconnexion" : "Logout"}
               </button>

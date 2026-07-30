@@ -362,9 +362,25 @@ textarea:focus { border-color: var(--green); }
 }
 .skip-btn:hover { color: var(--zinc-600); }
 .user-badge {
-  display: flex; align-items: center; gap: 8px;
-  background: var(--green-light); border-radius: 20px;
-  padding: 4px 12px; font-size: 12px; font-weight: 600; color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: clamp(96px, 24vw, 180px);
+  overflow: hidden;
+  background: var(--green-light);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.user-badge-email {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .logout-btn {
   background: none; border: 1px solid var(--zinc-200); border-radius: 8px;
@@ -372,3 +388,66 @@ textarea:focus { border-color: var(--green); }
   color: var(--zinc-500); cursor: pointer;
 }
 .logout-btn:hover { background: #fee2e2; color: var(--red); border-color: #fecaca; }
+
+.head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+@media (max-width: 420px) {
+  .head {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .head-left {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+
+  .head-left > div:last-child {
+    min-width: 0;
+  }
+
+  .head-actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .user-badge {
+    flex: 1 1 auto;
+    max-width: none;
+  }
+
+  .logout-btn,
+  .lang-btn {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 340px) {
+  .head {
+    padding: 10px;
+  }
+
+  .head-actions {
+    gap: 4px;
+  }
+
+  .user-badge {
+    padding: 4px 8px;
+  }
+
+  .logout-btn {
+    padding: 4px 7px;
+  }
+
+  .lang-btn {
+    padding: 5px 9px;
+  }
+}
