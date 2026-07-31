@@ -234,8 +234,20 @@ function loadHistory(): HistoryEntry[] {
   try { return JSON.parse(localStorage.getItem("phyto_history") ?? "[]"); }
   catch { return []; }
 }
-function saveHistory(h: HistoryEntry[]) {
-  localStorage.setItem("phyto_history", JSON.stringify(h.slice(0, 20)));
+function saveHistory(h: HistoryEntry[]): boolean {
+  try {
+    localStorage.setItem(
+      "phyto_history",
+      JSON.stringify(h.slice(0, 20)),
+    );
+    return true;
+  } catch (error) {
+    console.warn(
+      "PHYTO_HISTORY_STORAGE_UNAVAILABLE",
+      error,
+    );
+    return false;
+  }
 }
 
 const SUGGESTIONS_FR = [
